@@ -19,7 +19,18 @@ export class ProductQuery {
     const q = SQLHelper.select({
       table: 'products AS p',
       cols: [
-        'p.*, COALESCE((p.price - p.salePrice) * 100 / p.price, 0) AS salePercent',
+        'p.*',
+        `
+          CASE 
+            WHEN
+              p.isSaleOff = 1 
+            THEN 
+              COALESCE((p.price - p.salePrice) * 100 / p.price, 0)
+            ELSE
+              0
+          END AS salePercent
+        `,
+        'MAX(pc.categoryId) AS categoryId',
       ],
       joins: [
         {
@@ -53,6 +64,9 @@ export class ProductQuery {
           compare: 'LIKE',
           value: searchValue ? `"%${searchValue}%"` : null,
         },
+      },
+      groupBy: {
+        cols: ['p.id'],
       },
       sorts: [
         {
@@ -65,7 +79,6 @@ export class ProductQuery {
         limit,
       },
     });
-
     return q;
   }
   getListCount({
@@ -76,7 +89,7 @@ export class ProductQuery {
   }: GetProductListParams): string {
     const q = SQLHelper.select({
       table: 'products AS p',
-      cols: ['COUNT(*) AS total'],
+      cols: ['p.id'],
       joins: [
         {
           table: 'product_categories pc',
@@ -110,9 +123,17 @@ export class ProductQuery {
           value: searchValue ? `"%${searchValue}%"` : null,
         },
       },
+      groupBy: {
+        cols: ['p.id'],
+      },
     });
 
-    return q;
+    const qCount = SQLHelper.select({
+      table: `(${q}) AS p`,
+      cols: ['COUNT(*) as total'],
+    });
+
+    return qCount;
   }
 
   get({ slug }: GetProductParams) {

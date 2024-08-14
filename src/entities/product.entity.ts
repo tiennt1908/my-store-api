@@ -15,7 +15,7 @@ export class ProductEntity {
   @Column({ type: 'varchar', length: 256, unique: true, nullable: false })
   slug: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', length: 512, nullable: true })
   desc: string;
 
   @Column({ type: 'int', default: 0 })

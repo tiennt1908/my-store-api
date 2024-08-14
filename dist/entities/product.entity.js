@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], ProductEntity.prototype, "slug", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 512, nullable: true }),
     __metadata("design:type", String)
 ], ProductEntity.prototype, "desc", void 0);
 __decorate([

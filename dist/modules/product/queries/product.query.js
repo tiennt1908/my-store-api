@@ -14,7 +14,18 @@ let ProductQuery = class ProductQuery {
         const q = sql_helper_1.SQLHelper.select({
             table: 'products AS p',
             cols: [
-                'p.*, COALESCE((p.price - p.salePrice) * 100 / p.price, 0) AS salePercent',
+                'p.*',
+                `
+          CASE 
+            WHEN
+              p.isSaleOff = 1 
+            THEN 
+              COALESCE((p.price - p.salePrice) * 100 / p.price, 0)
+            ELSE
+              0
+          END AS salePercent
+        `,
+                'MAX(pc.categoryId) AS categoryId',
             ],
             joins: [
                 {
@@ -48,6 +59,9 @@ let ProductQuery = class ProductQuery {
                     compare: 'LIKE',
                     value: searchValue ? `"%${searchValue}%"` : null,
                 },
+            },
+            groupBy: {
+                cols: ['p.id'],
             },
             sorts: [
                 {
@@ -65,7 +79,7 @@ let ProductQuery = class ProductQuery {
     getListCount({ isSaleOff, searchValue, categoryId, collectionId, }) {
         const q = sql_helper_1.SQLHelper.select({
             table: 'products AS p',
-            cols: ['COUNT(*) AS total'],
+            cols: ['p.id'],
             joins: [
                 {
                     table: 'product_categories pc',
@@ -99,8 +113,15 @@ let ProductQuery = class ProductQuery {
                     value: searchValue ? `"%${searchValue}%"` : null,
                 },
             },
+            groupBy: {
+                cols: ['p.id'],
+            },
         });
-        return q;
+        const qCount = sql_helper_1.SQLHelper.select({
+            table: `(${q}) AS p`,
+            cols: ['COUNT(*) as total'],
+        });
+        return qCount;
     }
     get({ slug }) {
         const q = sql_helper_1.SQLHelper.select({

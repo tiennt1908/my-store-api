@@ -136,12 +136,22 @@ let ProductQuery = class ProductQuery {
     get({ slug }) {
         const q = sql_helper_1.SQLHelper.select({
             table: 'products AS p',
-            cols: ['p.*'],
+            cols: ['p.*', 'MAX(pc.categoryId) categoryId'],
+            joins: [
+                {
+                    table: 'product_categories pc',
+                    type: 'LEFT JOIN',
+                    condition: 'p.id = pc.productId',
+                },
+            ],
             where: {
                 slug: {
                     compare: '=',
                     value: `"${slug}"`,
                 },
+            },
+            groupBy: {
+                cols: ['p.id'],
             },
         });
         return q;

@@ -25,6 +25,16 @@ export class ProductQuery {
             WHEN
               p.isSaleOff = 1 
             THEN 
+              p.salePrice
+            ELSE
+              p.price
+          END AS salePrice
+        `,
+        `
+          CASE 
+            WHEN
+              p.isSaleOff = 1 
+            THEN 
               COALESCE((p.price - p.salePrice) * 100 / p.price, 0)
             ELSE
               0

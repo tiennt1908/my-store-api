@@ -1,1 +1,1 @@
-export type ProductSortColsType = 'price' | 'salePrice' | 'createAt' | 'salePercent' | 'totalSold';
+export type ProductSortColsType = 'id' | 'price' | 'salePrice' | 'createAt' | 'salePercent' | 'totalSold';

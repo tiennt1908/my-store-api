@@ -9,7 +9,7 @@ export declare class CreateOrderUseCase {
     private readonly orderItemQuery;
     private readonly productPropertyGroupQuery;
     constructor(dataSource: DataSource, orderQuery: OrderQuery, orderItemQuery: OrderItemQuery, productPropertyGroupQuery: ProductPropertyGroupQuery);
-    execute({ address, phoneNumber, userId, orderItems, }: CreateOrderInput): Promise<{
+    execute({ recipientName, address, phoneNumber, userId, orderItems, }: CreateOrderInput): Promise<{
         success: boolean;
         data: any;
     }>;

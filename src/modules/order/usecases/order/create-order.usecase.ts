@@ -18,6 +18,7 @@ export class CreateOrderUseCase {
   ) {}
 
   async execute({
+    recipientName,
     address,
     phoneNumber,
     userId,
@@ -27,6 +28,7 @@ export class CreateOrderUseCase {
       .transaction(async (e) => {
         await e.query(
           this.orderQuery.create({
+            recipientName,
             address,
             phoneNumber,
             userId,
@@ -68,7 +70,7 @@ export class CreateOrderUseCase {
           const newSupply = productPropertyGroup.totalSupply - e.amount;
 
           if (newSupply < 0) {
-            throw Error('Insufficient supply');
+            throw Error('Nguồn cung không đủ');
           }
 
           newProductPropertyGroupList.push({

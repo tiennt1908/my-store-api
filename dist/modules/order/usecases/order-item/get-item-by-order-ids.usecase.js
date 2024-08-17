@@ -25,6 +25,7 @@ let GetItemByOrderIdsUseCase = class GetItemByOrderIdsUseCase {
                 if (index === -1) {
                     orderItems.push({
                         id: e.orderId,
+                        recipientName: e.recipientName,
                         address: e.address,
                         phoneNumber: e.phoneNumber,
                         createAt: e.createAt,

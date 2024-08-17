@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { SQLHelper } from 'src/domain/helpers/sql.helper';
 import { CreateOrderParams } from '../domain/params/create-order.params';
-import { GetItemByOrderIdsParams } from '../domain/params/get-item-by-order-ids.params';
 import { GetOrderListParams } from '../domain/params/get-order-list.params';
 
 @Injectable()

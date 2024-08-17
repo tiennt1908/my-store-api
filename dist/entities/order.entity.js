@@ -34,6 +34,10 @@ __decorate([
     __metadata("design:type", Number)
 ], OrderEntity.prototype, "statusId", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 42 }),
+    __metadata("design:type", String)
+], OrderEntity.prototype, "recipientName", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'varchar', nullable: false }),
     __metadata("design:type", String)
 ], OrderEntity.prototype, "address", void 0);

@@ -1,5 +1,6 @@
 export interface IOrder {
   id: number;
+  recipientName: string;
   address: string;
   phoneNumber: string;
   createAt: number;
@@ -12,6 +13,7 @@ export interface IOrderItemRaw {
 
   orderId: number;
   phoneNumber: string;
+  recipientName: string;
   address: string;
   createAt: number;
   statusId: number;

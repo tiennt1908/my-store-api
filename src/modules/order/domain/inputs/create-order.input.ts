@@ -26,6 +26,10 @@ export class CreateOrderInput {
   @Length(1, 255)
   address: string;
 
+  @IsString()
+  @Length(1, 42)
+  recipientName: string;
+
   @Matches(/^0[0-9]{9}$/, { message: 'Phone number invalid' })
   phoneNumber: string;
 

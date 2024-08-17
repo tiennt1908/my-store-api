@@ -36,6 +36,11 @@ __decorate([
     __metadata("design:type", String)
 ], CreateOrderInput.prototype, "address", void 0);
 __decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 42),
+    __metadata("design:type", String)
+], CreateOrderInput.prototype, "recipientName", void 0);
+__decorate([
     (0, class_validator_1.Matches)(/^0[0-9]{9}$/, { message: 'Phone number invalid' }),
     __metadata("design:type", String)
 ], CreateOrderInput.prototype, "phoneNumber", void 0);

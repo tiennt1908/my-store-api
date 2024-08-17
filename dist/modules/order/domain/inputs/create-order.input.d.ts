@@ -4,6 +4,7 @@ export declare class OrderItemInput {
 }
 export declare class CreateOrderInput {
     address: string;
+    recipientName: string;
     phoneNumber: string;
     userId: number;
     orderItems: OrderItemInput[];

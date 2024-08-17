@@ -24,10 +24,11 @@ let CreateOrderUseCase = class CreateOrderUseCase {
         this.orderItemQuery = orderItemQuery;
         this.productPropertyGroupQuery = productPropertyGroupQuery;
     }
-    async execute({ address, phoneNumber, userId, orderItems, }) {
+    async execute({ recipientName, address, phoneNumber, userId, orderItems, }) {
         const query = this.dataSource
             .transaction(async (e) => {
             await e.query(this.orderQuery.create({
+                recipientName,
                 address,
                 phoneNumber,
                 userId,
@@ -52,7 +53,7 @@ let CreateOrderUseCase = class CreateOrderUseCase {
                 });
                 const newSupply = productPropertyGroup.totalSupply - e.amount;
                 if (newSupply < 0) {
-                    throw Error('Insufficient supply');
+                    throw Error('Nguồn cung không đủ');
                 }
                 newProductPropertyGroupList.push({
                     id: productPropertyGroup.id,

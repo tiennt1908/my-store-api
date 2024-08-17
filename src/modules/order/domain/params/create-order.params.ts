@@ -1,4 +1,5 @@
 export interface CreateOrderParams {
+  recipientName: string;
   address: string;
   phoneNumber: string;
   userId: number;

@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { GetItemByOrderIdsInput } from '../../domain/inputs/get-item-by-order-ids.input';
-import { IOrderDetail } from '../../domain/outputs/order.output';
+import { IOrderDetail, IOrderItemRaw } from '../../domain/outputs/order.output';
 import { OrderItemRepository } from '../../repositories/order-item.repository';
 
 @Injectable()
@@ -13,11 +13,12 @@ export class GetItemByOrderIdsUseCase {
 
       const orderItems: IOrderDetail[] = [];
 
-      orderItemsRaw.forEach((e) => {
+      orderItemsRaw.forEach((e: IOrderItemRaw) => {
         const index = orderItems.findIndex((o) => o.id === e.orderId);
         if (index === -1) {
           orderItems.push({
             id: e.orderId,
+            recipientName: e.recipientName,
             address: e.address,
             phoneNumber: e.phoneNumber,
             createAt: e.createAt,

@@ -19,6 +19,7 @@ export class OrderItemQuery {
       cols: [
         'oi.id',
         'orders.id orderId',
+        'orders.recipientName recipientName',
         'orders.phoneNumber',
         'orders.address',
         'orders.createAt',

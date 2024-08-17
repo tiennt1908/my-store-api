@@ -25,6 +25,9 @@ export class OrderEntity {
   @JoinColumn({ name: 'statusId' })
   statusId: number;
 
+  @Column({ type: 'varchar', length: 42 })
+  recipientName: string;
+
   @Column({ type: 'varchar', nullable: false })
   address: string;
 

@@ -29,6 +29,10 @@ __decorate([
     __metadata("design:type", Number)
 ], OrderItemEntity.prototype, "price", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'double' }),
+    __metadata("design:type", Number)
+], OrderItemEntity.prototype, "finalPrice", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => order_entity_1.OrderEntity, (ord) => ord.orderItems),
     (0, typeorm_1.JoinColumn)({ name: 'orderId' }),
     __metadata("design:type", Number)

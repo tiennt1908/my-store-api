@@ -19,6 +19,9 @@ export class OrderItemEntity {
   @Column({ type: 'double' })
   price: number;
 
+  @Column({ type: 'double' })
+  finalPrice: number;
+
   @ManyToOne(() => OrderEntity, (ord) => ord.orderItems)
   @JoinColumn({ name: 'orderId' })
   orderId: number;

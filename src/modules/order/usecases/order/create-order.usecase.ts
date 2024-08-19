@@ -60,7 +60,8 @@ export class CreateOrderUseCase {
 
           createItemsInput.push({
             amount: e.amount,
-            price: productPropertyGroup.isSaleOff
+            price: productPropertyGroup.price,
+            finalPrice: productPropertyGroup.isSaleOff
               ? productPropertyGroup.salePrice
               : productPropertyGroup.price,
             orderId: lastInsertId,

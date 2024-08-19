@@ -39,7 +39,7 @@ let GetItemByOrderIdsUseCase = class GetItemByOrderIdsUseCase {
                                 slug: e.slug,
                                 imageIndex: e.imageIndex,
                                 price: e.price,
-                                priceAtOrder: e.priceAtOrder,
+                                finalPrice: e.finalPrice,
                                 amount: e.amount,
                                 properties: e.propertyId
                                     ? [
@@ -68,7 +68,7 @@ let GetItemByOrderIdsUseCase = class GetItemByOrderIdsUseCase {
                                 slug: e.slug,
                                 imageIndex: e.imageIndex,
                                 price: e.price,
-                                priceAtOrder: e.priceAtOrder,
+                                finalPrice: e.finalPrice,
                                 amount: e.amount,
                                 properties: e.propertyId
                                     ? [

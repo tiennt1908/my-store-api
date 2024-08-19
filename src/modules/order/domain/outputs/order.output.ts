@@ -24,7 +24,7 @@ export interface IOrderItemRaw {
   slug: string;
   imageIndex: number;
   price: number;
-  priceAtOrder: number;
+  finalPrice: number;
   amount: number;
   isSaleOff: 0 | 1;
   propertyValueId: number | null;
@@ -47,7 +47,7 @@ export interface IOrderItem {
   slug: string;
   imageIndex: number;
   price: number;
-  priceAtOrder: number;
+  finalPrice: number;
   amount: number;
   properties: IProperty[];
 }
